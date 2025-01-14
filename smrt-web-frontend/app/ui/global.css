@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.circle-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #cbd5e0; /* Change color as needed */
+  color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.circle-button:hover {
+  background-color: #555; /* Change hover color as needed */
+}
+
+.sensor-id {
+  width: 100%;
+  background-color: #cbd5e0; /* Use your preferred shade of gray */
+  border: none;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.375rem; /* Equivalent to rounded-md in Tailwind */
+  color: #4a5568; /* Use your preferred placeholder color */
+  outline: none;
+}
+
+.custom-input {
+  width: 100%;
+  background-color: #cbd5e0; /* Use your preferred shade of gray */
+  border: none;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.375rem; /* Equivalent to rounded-md in Tailwind */
+  color: #4a5568; /* Use your preferred placeholder color */
+  outline: none;
+}
+.custom-input:hover {
+  background-color: #e5e5e5; /* Change hover color as needed */
+}
+
+.custom-input-group {
+  padding: 2.5rem; /* p-10 */
+  display: grid; /* columns-2 */
+  grid-template-columns: repeat(2, 1fr); /* columns-2 */
+  height: 100%; /* h-full */
+  background-color: #ffffff; /* bg-white */
+  gap: 6rem; /* gap-24 */
+  border-radius: 0.75rem; /* rounded-xl */
+}
+
+.graph-container {
+  display: flex; /* Use flexbox to arrange items horizontally */
+  width: 100%; /* Ensure full width of the container */
+  justify-content: center;
+}
+
+.sort-icon{
+  width: 30px;
+  height: 20px;
+  display: inline-block;
+}
+
+/* src/Popup.css */
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-main {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+/* src/Popup.css */
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-main {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.header{
+  position: fixed;
+    top: 0;
+    height: 200px
+}
+
+.custom-dropdown-toggle::after {
+  display: none !important;
+}
+
+.custom-dropdown-toggle {
+  cursor: pointer;
+}
+
+.custom-toggle {
+  cursor: pointer;
+}
+
+.custom-dropdown-menu.show {
+  border-color: #3b82f6 !important; /* Replace with your desired color */
+  border-width: 2px;
+  border-style: solid;
+}
+
+.custom-radio .form-check-input {
+  border-color: #475569; /* Change to desired color */
+  border-width: 1px; /* Change to desired border width */
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-animation {
+  animation: spin 800ms linear; /* Adjust duration and timing function as needed */
+}
+
+.custom-dropdown-calendar.show {
+  height: 295px;
+}
+
+.custom-print-button::after {
+  display: none !important;
+}
+
+.custom-divide {
+  border-right-width: 1.5px;
+}

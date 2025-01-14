@@ -1,0 +1,25 @@
+{
+	"name": "your-project",
+	"version": "1.0.0",
+	"scripts": {
+		"install": "npm run install:smrt-web-frontend && npm run install:smrt-web-backend",
+		"install:smrt-web-frontend": "cd smrt-web-frontend && npm install",
+		"install:smrt-web-backend": "cd smrt-web-backend && npm install",
+		"dev": "npm-run-all --parallel dev:smrt-web-frontend dev:smrt-web-backend",
+		"dev:smrt-web-frontend": "cd smrt-web-frontend && cross-env NODE_ENV=development npm run dev",
+		"dev:smrt-web-backend": "cd smrt-web-backend && cross-env NODE_ENV=development npm run dev",
+		"build": "npm-run-all --parallel build:smrt-web-frontend build:smrt-web-backend",
+		"build:smrt-web-frontend": "cd smrt-web-frontend && NODE_ENV=production npm run build",
+		"build:smrt-web-backend": "cd smrt-web-backend && NODE_ENV=production npm run build",
+		"start": "npm-run-all --parallel start:smrt-web-frontend start:smrt-web-backend",
+		"start:smrt-web-frontend": "cd smrt-web-frontend && cross-env NODE_ENV=production npm start",
+		"start:smrt-web-backend": "cd smrt-web-backend && cross-env NODE_ENV=production npm start"
+	},
+	"devDependencies": {
+		"cross-env": "^7.0.3",
+		"npm-run-all": "^4.1.5"
+	},
+	"dependencies": {
+		"dotenv": "^16.4.5"
+	}
+}
