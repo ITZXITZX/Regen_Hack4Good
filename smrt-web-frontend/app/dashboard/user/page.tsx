@@ -1,10 +1,10 @@
 import React, { use } from 'react';
-import AuthUserForm from '@/app/ui/dashboard/userForm';
+import UserForm from '@/app/ui/dashboard/userForm';
 
 
 
 export default function Page() {
   return (
-    <AuthUserForm/>
+    <UserForm/>
   );
 }

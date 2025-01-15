@@ -3,7 +3,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ToggleDisplay from '@/app/ui/dashboard/toggledisplay';
-import AuthDataDisplay from '@/app/ui/dashboard/dataDisplay';
+import { DataDisplay } from '@/app/ui/dashboard/dataDisplay';
 import SearchBar from '@/app/ui/dashboard/searchBar';
 import RefreshButton from '@/app/ui/dashboard/refreshButton';
 import FilterButton from '@/app/ui/dashboard/filterButton';
@@ -45,7 +45,7 @@ export default function Page() {
                 </Row>
                 {list ? <SortByHeader/> : <Row className='bg-gray-200 h-1 border-b-2 border-slate-400'></Row>}
             </div>
-            <AuthDataDisplay/>
+            <DataDisplay/>
         </Container>
     );
 }

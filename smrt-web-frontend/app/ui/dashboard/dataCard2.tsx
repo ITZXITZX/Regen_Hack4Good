@@ -173,4 +173,4 @@ export function DataCard2() {
   );
 }
 
-export const AuthDataCard2 = withAuth(DataCard2);
+// export const AuthDataCard2 = withAuth(DataCard2);
