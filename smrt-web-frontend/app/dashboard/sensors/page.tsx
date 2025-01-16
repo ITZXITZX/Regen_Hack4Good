@@ -29,18 +29,15 @@ export default function Page() {
                     </Col>
                 </Row>
                 <Row className='px-3 mb-3'>
-                    <Col xs={12} sm={3}>
+                    <Col md={4} lg={4}>
                         <SearchBar placeholder='Search Sensor name/ID'/>
                     </Col>
-                    <Col xs={5} sm={3} md={2} lg={2} xl={3} className='d-flex justify-content-start'>
+                    <Col md={4} lg={4} className='d-flex justify-content-start'>
                         {<FilterButton/>}
                     </Col>
                     {/*<Col xs={1}  className='bg-blue-300'></Col>*/}
-                    <Col xs={7} sm={6} md={7} lg={5} xl={4} className='d-flex justify-content-end'>
+                    <Col md={4} lg={4} className='d-flex justify-content-end'>
                         <SortButton/>
-                    </Col>
-                    <Col md={12} lg={2} xl={2} className='d-flex justify-content-end'>
-                        <ToggleDisplay/>
                     </Col>
                 </Row>
                 {list ? <SortByHeader/> : <Row className='bg-gray-200 h-1 border-b-2 border-slate-400'></Row>}

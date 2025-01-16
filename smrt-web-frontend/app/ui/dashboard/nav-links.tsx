@@ -15,8 +15,11 @@ const links = [
     icon: WifiIcon,
     int: 10,
   },
-  //{ name: 'Dashboard', href: '/dashboard', icon: HomeIcon, int: 22 },
-  //{ name: 'Users', href: '/dashboard/users', icon: UserGroupIcon, int: 15 },
+  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, int: 22 },
+  { name: 'Earn Vouchers', href: '/dashboard/users', icon: UserGroupIcon, int: 15 },
+  { name: 'Buy Products', href: '/dashboard/users', icon: UserGroupIcon, int: 15 },
+  { name: 'Approve Tasks', href: '/dashboard/users', icon: UserGroupIcon, int: 15 },
+  { name: 'Create Tasks', href: '/dashboard/users', icon: UserGroupIcon, int: 15 },
 ];
 
 export default function NavLinks() {
