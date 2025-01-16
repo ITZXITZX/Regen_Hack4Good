@@ -106,44 +106,80 @@ export async function signout(): Promise<boolean> {
   }
 }
 
-// login
+//login
+
+// Define hardcoded credentials
+const hardcodedUser = 'admin';  // Example hardcoded username
+const hardcodedPassword = 'admin';  // Example hardcoded password
+
+// login function
 export async function login(
   user: string,
   password: string,
 ): Promise<UserData | null> {
-  const apiUrl = process.env.SERVER_ORIGIN;
-  const url = `${apiUrl}/user/login`;
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: user,
-        password: password,
-      }),
-      credentials: 'include',
-    });
+    // Check if the provided credentials match the hardcoded values
+    if (user === hardcodedUser && password === hardcodedPassword) {
+      // Create a mock userData object to return (replace with actual user data if needed)
+      const userData: UserData = {
+        user: {
+          username: user,
+          phone_number: '+65',  // Default phone number (or set dynamically)
+          email: '',  // Default email (or set dynamically)
+        },
+        jwt: 'mock-jwt-token',  // Example mock JWT (replace with real token generation if needed)
+      };
 
-    if (!response.ok) {
+      // Return user data after successful login
+      return userData.user;
+    } else {
+      // If credentials are incorrect, return null
       return null;
     }
-
-    const data: UserData = (await response.json()).user;
-    if (data.phone_number === null) {
-      data.phone_number = '+65';
-    } else if (!data.phone_number.startsWith('+65')) {
-      data.phone_number = '+65' + data.phone_number;
-    }
-    if (data.email === null) data.email = '';
-
-    return data;
   } catch (error) {
-    console.error('There has been a problem with your fetch operation:', error);
+    console.error('Error during login: ', error);
     return null;
   }
 }
+
+// login
+// export async function login(
+//   user: string,
+//   password: string,
+// ): Promise<UserData | null> {
+//   const apiUrl = process.env.SERVER_ORIGIN;
+//   const url = `${apiUrl}/user/login`;
+//   try {
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         user: user,
+//         password: password,
+//       }),
+//       credentials: 'include',
+//     });
+
+//     if (!response.ok) {
+//       return null;
+//     }
+
+//     const data: UserData = (await response.json()).user;
+//     if (data.phone_number === null) {
+//       data.phone_number = '+65';
+//     } else if (!data.phone_number.startsWith('+65')) {
+//       data.phone_number = '+65' + data.phone_number;
+//     }
+//     if (data.email === null) data.email = '';
+
+//     return data;
+//   } catch (error) {
+//     console.error('There has been a problem with your fetch operation:', error);
+//     return null;
+//   }
+// }
 
 // get all users
 export async function fetchAllUsers(): Promise<UserData[]> {
