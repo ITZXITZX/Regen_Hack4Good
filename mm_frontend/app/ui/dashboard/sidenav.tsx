@@ -15,18 +15,11 @@ export default function SideNav() {
         <Col xs={12} className="mb-5">
           <Link href="/">
             <Image
-              src="/oneberry-logo.png"
+              src="/muhammadiyah_logo.png"
               width={300}
               height={100}
               className="mb-4 hidden p-4 lg:block"
-              alt="Oneberry logo"
-            />
-            <Image
-              src="/oneberry-logo-2.png"
-              width={100}
-              height={100}
-              className="mb-4 block p-2 lg:hidden"
-              alt="Oneberry logo"
+              alt="mm"
             />
           </Link>
           <NavLinks />
