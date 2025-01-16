@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./*"],
+      "@tanstack/react-query": ["node_modules/@tanstack/react-query"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/lib/placeholder-data.js",
+    "scripts/seed.js"
+, "app/ui/graphs/tempChart.js", "app/lib/tempData.js"  ],
+  "exclude": ["node_modules"]
+}
