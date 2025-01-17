@@ -2,30 +2,146 @@ const userService = require('../services/userService.js');
 
 exports.login = async (req, res) => {
   try {
-    // make sure page size and page are valid numbers
-    const user = req.body.user;
-    const password = req.body.password;
+    // Extract the user and password from the request body
+    const { user, password } = req.body;
 
     console.log('Logging in...');
 
-    // get userData
-    const userData = await userService.login(user, password);
+    // Hardcoded credentials for comparison
+    const hardcodedUser = 'admin';  // Replace with your actual hardcoded user
+    const hardcodedPassword = 'admin';  // Replace with your actual hardcoded password
 
-    // Set JWT as a cookie
-    res.cookie('token', userData.jwt, {
-      httpOnly: true,
-      secure: false, //process.env.NODE_ENV === 'development', // Send the cookie over HTTPS only in production
-      maxAge: 3600000, // 1 hour
-      sameSite: 'Lax',
-    });
+    // Check if the provided user and password match the hardcoded values
+    if (user === hardcodedUser && password === hardcodedPassword) {
+      // If credentials are valid, create a mock userData object
+      const userData = {
+        user: { username: user },
+        jwt: 'mock-jwt-token',  // You would typically generate a real JWT token here
+      };
 
-    // send only user data
-    res.status(200).json({ user: userData.user });
+      // Set JWT as a cookie
+      res.cookie('token', userData.jwt, {
+        httpOnly: true,
+        secure: false,  // Change this based on your environment (true for production)
+        maxAge: 3600000,  // 1 hour
+        sameSite: 'Lax',
+      });
+
+      // Send back the user data
+      res.status(200).json({ user: userData.user });
+    } else {
+      // If credentials are incorrect, return an error
+      res.status(401).json({ message: 'Invalid credentials' });
+    }
   } catch (error) {
     console.error('Error logging in: ', error);
     res.status(500).json({ message: 'Error logging in' });
   }
 };
+
+exports.residentLogin = async (req, res) => {
+  try {
+    // Extract the user and password from the request body
+    const { user, password } = req.body;
+
+    console.log('Logging in...');
+
+    // Hardcoded credentials for comparison
+    const hardcodedUser = 'resident';  // Replace with your actual hardcoded user
+    const hardcodedPassword = 'resident';  // Replace with your actual hardcoded password
+
+    // Check if the provided user and password match the hardcoded values
+    if (user === hardcodedUser && password === hardcodedPassword) {
+      // If credentials are valid, create a mock userData object
+      const userData = {
+        user: { username: user },
+        jwt: 'mock-jwt-token',  // You would typically generate a real JWT token here
+      };
+
+      // Set JWT as a cookie
+      res.cookie('token', userData.jwt, {
+        httpOnly: true,
+        secure: false,  // Change this based on your environment (true for production)
+        maxAge: 3600000,  // 1 hour
+        sameSite: 'Lax',
+      });
+
+      // Send back the user data
+      res.status(200).json({ user: userData.user });
+    } else {
+      // If credentials are incorrect, return an error
+      res.status(401).json({ message: 'Invalid credentials' });
+    }
+  } catch (error) {
+    console.error('Error logging in: ', error);
+    res.status(500).json({ message: 'Error logging in' });
+  }
+};
+
+exports.adminLogin = async (req, res) => {
+  try {
+    // Extract the user and password from the request body
+    const { user, password } = req.body;
+
+    console.log('Logging in...');
+
+    const hardcodedUser = 'admin';  // Hardcoded user
+    const hardcodedPassword = 'admin';  // Hardcoded password
+
+    // Check if the provided user and password match the hardcoded values
+    if (user === hardcodedUser && password === hardcodedPassword) {
+      // If credentials are valid, create a mock userData object
+      const userData = {
+        user: { username: user },
+        jwt: 'mock-jwt-token',  // Hardcoded token
+      };
+
+      // Set JWT as a cookie
+      res.cookie('token', userData.jwt, {
+        httpOnly: true,
+        secure: false, 
+        maxAge: 3600000,  // 1 hour
+        sameSite: 'Lax',
+      });
+
+      // Send back the user data
+      res.status(200).json({ user: userData.user });
+    } else {
+      // If credentials are incorrect, return an error
+      res.status(401).json({ message: 'Invalid credentials' });
+    }
+  } catch (error) {
+    console.error('Error logging in: ', error);
+    res.status(500).json({ message: 'Error logging in' });
+  }
+};
+
+// exports.login = async (req, res) => {
+//   try {
+//     // make sure page size and page are valid numbers
+//     const user = req.body.user;
+//     const password = req.body.password;
+
+//     console.log('Logging in...');
+
+//     // get userData
+//     const userData = await userService.login(user, password);
+
+//     // Set JWT as a cookie
+//     res.cookie('token', userData.jwt, {
+//       httpOnly: true,
+//       secure: false, //process.env.NODE_ENV === 'development', // Send the cookie over HTTPS only in production
+//       maxAge: 3600000, // 1 hour
+//       sameSite: 'Lax',
+//     });
+
+//     // send only user data
+//     res.status(200).json({ user: userData.user });
+//   } catch (error) {
+//     console.error('Error logging in: ', error);
+//     res.status(500).json({ message: 'Error logging in' });
+//   }
+// };
 
 exports.signout = async (req, res) => {
   try {

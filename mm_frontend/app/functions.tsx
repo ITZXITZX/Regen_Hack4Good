@@ -106,44 +106,120 @@ export async function signout(): Promise<boolean> {
   }
 }
 
-// login
+//login
+
+// Define hardcoded credentials
+const hardcodedAdmin = 'admin';  
+const hardcodedAdminPassword = 'admin';  
+const hardcodedResident = 'resident';
+const hardcodedResidentPassword = 'resident';
+
+// login function
+
 export async function login(
   user: string,
   password: string,
 ): Promise<UserData | null> {
-  const apiUrl = process.env.SERVER_ORIGIN;
-  const url = `${apiUrl}/user/login`;
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user: user,
-        password: password,
-      }),
-      credentials: 'include',
-    });
-
-    if (!response.ok) {
+    if (user === hardcodedAdmin && password === hardcodedAdminPassword) {
+      const userData: UserData = {
+        user: {
+          username: user,
+          phone_number: '+65',
+          email: '',
+          role: 'admin', // Add role
+        },
+        jwt: 'mock-jwt-token',
+      };
+      return userData.user;
+    } else if (user === hardcodedResident && password === hardcodedResidentPassword) {
+      const userData: UserData = {
+        user: {
+          username: user,
+          phone_number: '+65',
+          email: '',
+          role: 'resident', // Add role
+        },
+        jwt: 'mock-jwt-token',
+      };
+      return userData.user;
+    } else {
       return null;
     }
-
-    const data: UserData = (await response.json()).user;
-    if (data.phone_number === null) {
-      data.phone_number = '+65';
-    } else if (!data.phone_number.startsWith('+65')) {
-      data.phone_number = '+65' + data.phone_number;
-    }
-    if (data.email === null) data.email = '';
-
-    return data;
   } catch (error) {
-    console.error('There has been a problem with your fetch operation:', error);
+    console.error('Error during login: ', error);
     return null;
   }
 }
+
+
+// export async function login(
+//   user: string,
+//   password: string,
+// ): Promise<UserData | null> {
+//   try {
+//     // Check if the provided credentials match the hardcoded values
+//     if ((user === hardcodedAdmin && password === hardcodedAdminPassword) || (user === hardcodedResident && password === hardcodedResidentPassword)) {
+//       // Create a mock userData object to return (replace with actual user data if needed)
+//       const userData: UserData = {
+//         user: {
+//           username: user,
+//           phone_number: '+65',  // Default phone number (or set dynamically)
+//           email: '',  // Default email (or set dynamically)
+//         },
+//         jwt: 'mock-jwt-token',  // Example mock JWT (replace with real token generation if needed)
+//       };
+
+//       // Return user data after successful login
+//       return userData.user;
+//     } else {
+//       // If credentials are incorrect, return null
+//       return null;
+//     }
+//   } catch (error) {
+//     console.error('Error during login: ', error);
+//     return null;
+//   }
+// }
+
+// login
+// export async function login(
+//   user: string,
+//   password: string,
+// ): Promise<UserData | null> {
+//   const apiUrl = process.env.SERVER_ORIGIN;
+//   const url = `${apiUrl}/user/login`;
+//   try {
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         user: user,
+//         password: password,
+//       }),
+//       credentials: 'include',
+//     });
+
+//     if (!response.ok) {
+//       return null;
+//     }
+
+//     const data: UserData = (await response.json()).user;
+//     if (data.phone_number === null) {
+//       data.phone_number = '+65';
+//     } else if (!data.phone_number.startsWith('+65')) {
+//       data.phone_number = '+65' + data.phone_number;
+//     }
+//     if (data.email === null) data.email = '';
+
+//     return data;
+//   } catch (error) {
+//     console.error('There has been a problem with your fetch operation:', error);
+//     return null;
+//   }
+// }
 
 // get all users
 export async function fetchAllUsers(): Promise<UserData[]> {
