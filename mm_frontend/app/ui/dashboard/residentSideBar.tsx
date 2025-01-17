@@ -25,7 +25,6 @@ export default function SideNav() {
             />
           </Link>
           <VoucherBalance />
-          <Row/>
           <DoTasks />
         </Col>
         <Col xs={12} className="justify-content-center mb-4 flex">

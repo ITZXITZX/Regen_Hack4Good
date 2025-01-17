@@ -23,7 +23,7 @@ export default function DoTasks() {
     { id:3, name: 'Clear trash', reward: 5, choped: false },
   ];
   return (
-    <div className="w-flex">
+    <div className="w-48 p-2 border-t-2 border-slate-300">
       <Row className="mx-3 text-md font-bold text-slate-500">Do Tasks:</Row>
       {tasks
         .filter((task) => task !== undefined) // Filter out undefined tasks

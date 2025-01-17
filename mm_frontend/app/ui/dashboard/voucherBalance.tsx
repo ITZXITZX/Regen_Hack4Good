@@ -15,11 +15,11 @@ export default function VoucherBalance() {
   const pathname = usePathname();
   const { isAdmin, setIsAdmin } = useUserTypeStore();
   return (
-    <div className="my-4">
+    <div className="w-48 p-2 border-t-2 border-slate-300">
       <Row className="mx-3 text-md font-bold text-slate-500">
         Voucher Balance:
       </Row>
-      <Row className="mx-3 text-sm text-slate-500">Usable:</Row>
+      <Row className="mx-3 text-xs text-slate-500">Usable:</Row>
       <Row className="text-xl text-slate-600 font-bold justify-center">{"$" + 90} </Row>
       <Row className="mx-3 text-xs text-slate-500">Total: {"$" + 100} </Row>
       <Row className="mx-3 text-xs text-slate-500">Locked: {"$" + 10} </Row>
