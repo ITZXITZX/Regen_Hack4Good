@@ -23,6 +23,7 @@ export type updateUserData = {
 export type UserData = {
   id: string;
   username: string;
+  role: string;
   email: string;
   provider: string;
   confirmed: boolean;
@@ -31,6 +32,7 @@ export type UserData = {
   updatedAt: string;
   alert_template: string;
   phone_number: string;
+  jwt: string;
 };
 
 export type deviceHistory = {
