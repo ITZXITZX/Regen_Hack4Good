@@ -31,6 +31,21 @@ export const useProductsDataArrayStore = create<productsDataArrayState>((set) =>
   setProductsData: (x: ProductData[]) => set((state) => ({ productsData: x })),
 }));
 
+interface TasksSelectedState {
+  tasksSelected: boolean[];
+  toggleSelected: (x: number) => void;
+}
+
+export const useTasksSelectedStore = create<TasksSelectedState>((set) => ({
+  tasksSelected: [false, false, false, false, false], // supposed to fethc from db
+  toggleSelected: (x: number) => 
+    set((state) => ({
+      tasksSelected: state.tasksSelected.map((selected, index) =>
+        index === x ? !selected : selected
+      ),
+    })),
+}));
+
 // Admin
 
 
@@ -205,60 +220,6 @@ export const useLastPageStore = create<LastPageState>((set) => ({
 //   },
 //   setDeviceData: (x: DeviceData) => set((state) => ({ deviceData: x })),
 // }));
-
-interface SensorHistState {
-  sensorHist: deviceHistory[];
-  setSensorHist: (sensorHist: deviceHistory[]) => void;
-}
-
-export const useSensorHistStore = create<SensorHistState>((set) => ({
-  sensorHist: [],
-  setSensorHist: (x: deviceHistory[]) => set((state) => ({ sensorHist: x })),
-}));
-
-interface alertHistArrayState {
-  alertHistory: alertHistory[];
-  setAlertHistory: (x: alertHistory[]) => void;
-  noAlerts: boolean;
-  setNoAlerts: (x: boolean) => void;
-}
-
-export const useAlertHistArrayStore = create<alertHistArrayState>((set) => ({
-  alertHistory: [],
-  setAlertHistory: (x: alertHistory[]) => set((state) => ({ alertHistory: x })),
-  noAlerts: false,
-  setNoAlerts: (x: boolean) => set((state) => ({ noAlerts: x })),
-}));
-
-interface dateRangeState {
-  dateRange: [any, any];
-  setDateRange: (x: [Date | null, Date | null]) => void;
-}
-
-export const useDateRangeStore = create<dateRangeState>((set) => ({
-  dateRange: [getCurrentFormattedDate(), getCurrentFormattedDate()],
-  setDateRange: (x: [any, any]) => set((state) => ({ dateRange: x })),
-}));
-
-interface daysBetweenState {
-  daysBetween: number;
-  setDaysBetween: (x: number) => void;
-}
-
-export const useDaysBetweenStore = create<daysBetweenState>((set) => ({
-  daysBetween: 1,
-  setDaysBetween: (x: number) => set((state) => ({ daysBetween: x })),
-}));
-
-interface printRangeState {
-  printRange: [any, any];
-  setPrintRange: (x: [Date | null, Date | null]) => void;
-}
-
-export const usePrintRangeStore = create<printRangeState>((set) => ({
-  printRange: [getCurrentFormattedDate(), getCurrentFormattedDate()],
-  setPrintRange: (x: [any, any]) => set((state) => ({ printRange: x })),
-}));
 
 // Utilities
 
