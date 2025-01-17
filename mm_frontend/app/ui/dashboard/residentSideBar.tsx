@@ -8,6 +8,7 @@ import DoTasks from './doTasks';
 // jsx components
 import NavLinks from '@/app/ui/dashboard/nav-links';
 import UserProfile from '@/app/ui/dashboard/userProfile';
+import VoucherBalance from '@/app/ui/dashboard/voucherBalance';
 
 export default function SideNav() {
   return (
@@ -23,6 +24,8 @@ export default function SideNav() {
               alt="mm"
             />
           </Link>
+          <VoucherBalance />
+          <Row/>
           <DoTasks />
         </Col>
         <Col xs={12} className="justify-content-center mb-4 flex">
