@@ -138,15 +138,15 @@ export const useFilterStateStore = create<FilterState>((set) => ({
     })),
 }));
 
-interface mySensorsState {
-  mySensors: DeviceData[];
-  setMySensors: (x: DeviceData[]) => void;
-}
+// interface mySensorsState {
+//   mySensors: DeviceData[];
+//   setMySensors: (x: DeviceData[]) => void;
+// }
 
-export const useMySensorsState = create<mySensorsState>((set) => ({
-  mySensors: [],
-  setMySensors: (x: DeviceData[]) => set((state) => ({ mySensors: x })),
-}));
+// export const useMySensorsState = create<mySensorsState>((set) => ({
+//   mySensors: [],
+//   setMySensors: (x: DeviceData[]) => set((state) => ({ mySensors: x })),
+// }));
 
 // Pagination
 
@@ -180,31 +180,31 @@ export const useLastPageStore = create<LastPageState>((set) => ({
 
 // Sensor Details Page
 
-interface deviceDataState {
-  deviceData: DeviceData;
-  setDeviceData: (x: DeviceData) => void;
-}
+// interface deviceDataState {
+//   deviceData: DeviceData;
+//   setDeviceData: (x: DeviceData) => void;
+// }
 
-export const useDeviceDataStore = create<deviceDataState>((set) => ({
-  deviceData: {
-    sensor_id: 'Loading...',
-    sensor_name: 'Loading...',
-    location: 'Loading...',
-    threshold_temp: 0,
-    last_alerted_temp: 0,
-    last_seen: 'Loading...',
-    alerts_enabled: true,
-    curr_temp: 0,
-    curr_humidity: 0,
-    createdAt: 'Loading...',
-    updatedAt: 'Loading...',
-    publishedAt: 'Loading...',
-    users: {
-      data: [],
-    },
-  },
-  setDeviceData: (x: DeviceData) => set((state) => ({ deviceData: x })),
-}));
+// export const useDeviceDataStore = create<deviceDataState>((set) => ({
+//   deviceData: {
+//     sensor_id: 'Loading...',
+//     sensor_name: 'Loading...',
+//     location: 'Loading...',
+//     threshold_temp: 0,
+//     last_alerted_temp: 0,
+//     last_seen: 'Loading...',
+//     alerts_enabled: true,
+//     curr_temp: 0,
+//     curr_humidity: 0,
+//     createdAt: 'Loading...',
+//     updatedAt: 'Loading...',
+//     publishedAt: 'Loading...',
+//     users: {
+//       data: [],
+//     },
+//   },
+//   setDeviceData: (x: DeviceData) => set((state) => ({ deviceData: x })),
+// }));
 
 interface SensorHistState {
   sensorHist: deviceHistory[];
@@ -297,8 +297,10 @@ interface popupState {
   toggleChngPwd: () => void;
   showUsers: boolean;
   toggleShowUsers: () => void;
-  showSensorAlerts: boolean;
-  toggleSensorAlerts: () => void;
+  showBuyProduct: boolean;
+  selectedProductID: number;
+  toggleBuyProduct: () => void;
+  setSelectedProduct: (x: number) => void;
   showSelectUsers: boolean;
   toggleSelectUsers: () => void;
 }
@@ -308,9 +310,12 @@ export const usePopupStore = create<popupState>((set) => ({
   toggleChngPwd: () => set((state) => ({ showChngPwd: !state.showChngPwd })),
   showUsers: false,
   toggleShowUsers: () => set((state) => ({ showUsers: !state.showUsers })),
-  showSensorAlerts: false,
-  toggleSensorAlerts: () =>
-    set((state) => ({ showSensorAlerts: !state.showSensorAlerts })),
+  showBuyProduct: false,
+  selectedProductID: 0,
+  toggleBuyProduct: () =>
+    set((state) => ({ showBuyProduct: !state.showBuyProduct })),
+  setSelectedProduct: (x: number) =>
+    set((state) => ({ selectedProductID: x })),
   showSelectUsers: false,
   toggleSelectUsers: () =>
     set((state) => ({ showSelectUsers: !state.showSelectUsers })),
