@@ -11,6 +11,7 @@ import { BellAlertIcon } from '@heroicons/react/24/outline';
 import SortButton from '@/app/ui/dashboard/sortButton';
 import SortByHeader from '@/app/ui/dashboard/sortByHeader';
 import { useDisplayStore } from '@/app/store';
+import PopupBuyProduct from '@/app/ui/dashboard/popupBuyProduct';
 
 export default function Page() {
     const { list } = useDisplayStore();
@@ -38,6 +39,9 @@ export default function Page() {
                 {list ? <SortByHeader/> : <Row className='bg-gray-200 h-1 border-b-2 border-slate-400'></Row>}
             </div>
             <DataDisplay/>
+            <div>
+                <PopupBuyProduct/>
+            </div>
         </Container>
     );
 }
