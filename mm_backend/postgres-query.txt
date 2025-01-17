@@ -1,7 +1,64 @@
+-- Remove existing tables (if they exist) in the right order to avoid foreign key issues
+DROP TABLE IF EXISTS tasks CASCADE;
+DROP TABLE IF EXISTS preorders CASCADE;
+DROP TABLE IF EXISTS transactions CASCADE;
+DROP TABLE IF EXISTS products CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
+
+-- Now create new tables in the correct order
+
+-- User table
 CREATE TABLE users (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),  
-    username VARCHAR(255) NOT NULL,                  
-    password VARCHAR(255) NOT NULL,                  
-    voucher_balance INT DEFAULT 0,                   
-    is_suspended BOOLEAN DEFAULT FALSE              
+    uuid SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    voucher_balance INT NOT NULL DEFAULT 0,
+    is_suspended BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+-- Product table
+CREATE TABLE products (
+    pid SERIAL PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    blocked_quantity INT NOT NULL DEFAULT 0,
+    cost INT NOT NULL,
+    preorder_limit INT NOT NULL,  -- Admin-defined limit
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Transaction table
+CREATE TABLE transactions (
+    uuid SERIAL PRIMARY KEY,
+    pid INT NOT NULL,
+    total INT NOT NULL,  -- calculated as quantity * cost of product
+    quantity INT NOT NULL,
+    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (pid) REFERENCES products (pid) ON DELETE CASCADE
+);
+
+-- Preorder table
+CREATE TABLE preorders (
+    pid INT NOT NULL,
+    quantity INT NOT NULL,
+    uuid INT NOT NULL,
+    request TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_approved BOOLEAN NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (pid, uuid),
+    FOREIGN KEY (pid) REFERENCES products (pid) ON DELETE CASCADE,
+    FOREIGN KEY (uuid) REFERENCES users (uuid) ON DELETE CASCADE
+);
+
+-- Tasks table (this is where we'll insert new tasks)
+CREATE TABLE tasks (
+	task VARCHAR(255) NOT NULL,  -- Task description
+	voucher_amount INT NOT NULL,  -- Voucher points to add to user's balance
+    is_approved BOOLEAN NOT NULL DEFAULT FALSE,
+    uuid INT,  -- NULL for tasks not associated with a user
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO users (username, password) VALUES ('admin', 'admin');
+INSERT INTO users (username, password) VALUES ('resident', 'resident');
+
+

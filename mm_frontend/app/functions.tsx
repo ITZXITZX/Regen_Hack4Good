@@ -114,6 +114,7 @@ const hardcodedAdminPassword = 'admin';
 const hardcodedResident = 'resident';
 const hardcodedResidentPassword = 'resident';
 
+
 // login function
 
 export async function login(
@@ -152,35 +153,6 @@ export async function login(
   }
 }
 
-
-// export async function login(
-//   user: string,
-//   password: string,
-// ): Promise<UserData | null> {
-//   try {
-//     // Check if the provided credentials match the hardcoded values
-//     if ((user === hardcodedAdmin && password === hardcodedAdminPassword) || (user === hardcodedResident && password === hardcodedResidentPassword)) {
-//       // Create a mock userData object to return (replace with actual user data if needed)
-//       const userData: UserData = {
-//         user: {
-//           username: user,
-//           phone_number: '+65',  // Default phone number (or set dynamically)
-//           email: '',  // Default email (or set dynamically)
-//         },
-//         jwt: 'mock-jwt-token',  // Example mock JWT (replace with real token generation if needed)
-//       };
-
-//       // Return user data after successful login
-//       return userData.user;
-//     } else {
-//       // If credentials are incorrect, return null
-//       return null;
-//     }
-//   } catch (error) {
-//     console.error('Error during login: ', error);
-//     return null;
-//   }
-// }
 
 // login
 // export async function login(

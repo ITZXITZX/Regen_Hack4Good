@@ -1,3 +1,6 @@
+const { NextApiRequest, NextApiResponse } = require('next');
+
+
 const userService = require('../services/userService.js');
 
 exports.login = async (req, res) => {
@@ -225,3 +228,139 @@ exports.getAllUsers = async (req, res) => {
     res.status(500).json({ message: 'Error getting all users' });
   }
 };
+
+// Controller to handle creating a user
+exports.createUser = async (req, res) => {
+  try {
+    const { username, email, password } = req.body; // Extract data from request body
+
+    const newUser = await userService.createUser(username, email, password); // Call service to create user
+
+    if (newUser) {
+      res.status(201).json({ message: 'User created successfully', user: newUser }); // Send success response
+    } else {
+      res.status(400).json({ message: 'Failed to create user' }); // Send error response
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'An error occurred while creating the user' }); // Send error response
+  }
+};
+
+
+// controllers/userController.js
+
+
+exports.createTask = async (req, res) => {
+  console.log('create-task endpoint hit');
+  try {
+    const { task, voucher_amount, is_approved, uuid } = req.body;
+
+    if (!task || !voucher_amount) {
+      return res.status(400).json({ message: 'Task name and voucher amount are required.' });
+    }
+
+    // Call the service function to create the task
+    const newTask = await userService.createTask(task, voucher_amount, is_approved, uuid);
+
+    return res.status(201).json({
+      message: 'Task created successfully!',
+      task: newTask,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'An error occurred while creating the task at createTask.' });
+  }
+};
+
+
+// Controller method to get all tasks
+exports.getTasks = async (req, res) => {
+  try {
+    // Call the service function to fetch tasks
+    const tasks = await userService.getAllTasks();
+
+    if (tasks.length === 0) {
+      return res.status(404).json({ message: 'No tasks found' });
+    }
+
+    return res.status(200).json({
+      tasks: tasks,
+    });
+  } catch (error) {
+    console.error('Error getting tasks:', error);
+    return res.status(500).json({ message: 'An error occurred while fetching tasks' });
+  }
+};
+
+
+// userController.js
+exports.approveTask = async (req, res) => {
+  const { taskName } = req.params;
+
+  try {
+    const result = await userService.approveTask(taskName);
+    if (result) {
+      res.status(200).json({ message: 'Task approved successfully' });
+    } else {
+      res.status(400).json({ message: 'Task approval failed or UUID is 0' });
+    }
+  } catch (error) {
+    console.error('Error approving task:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+exports.cancelTask = async (req, res) => {
+  const { taskName } = req.params;
+
+  try {
+    const result = await userService.cancelTask(taskName);
+    if (result) {
+      res.status(200).json({ message: 'Task canceled successfully' });
+    } else {
+      res.status(400).json({ message: 'Task cancellation failed' });
+    }
+  } catch (error) {
+    console.error('Error canceling task:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+
+// // Controller method to cancel a task
+// exports.cancelTask = async (req, res) => {
+//   const { taskId } = req.params;
+
+//   try {
+//     const result = await userService.cancelTask(taskId);
+//     if (result) {
+//       return res.status(200).json({ success: true, message: 'Task canceled successfully.' });
+//     } else {
+//       return res.status(404).json({ success: false, message: 'Task not found.' });
+//     }
+//   } catch (error) {
+//     console.error('Error canceling task:', error);
+//     return res.status(500).json({ success: false, message: 'An error occurred while canceling the task.' });
+//   }
+// };
+
+// // Controller method to approve a task
+// exports.approveTask = async (req, res) => {
+//   const { taskId } = req.params;
+
+//   try {
+//     const result = await userService.approveTask(taskId);
+//     if (result) {
+//       return res.status(200).json({ success: true, message: 'Task approved successfully.' });
+//     } else {
+//       return res.status(404).json({ success: false, message: 'Task not found or UUID is 0.' });
+//     }
+//   } catch (error) {
+//     console.error('Error approving task:', error);
+//     return res.status(500).json({ success: false, message: 'An error occurred while approving the task.' });
+//   }
+// };
+
+
